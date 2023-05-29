@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use test\Mockery\Stubs\Animal;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Applicant extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
     protected $table = 'applicants';
     protected $dates = ['deleted_at'];
     protected $fillable = ['app_name', 'app_email', 'app_image', 'app_gender', 'app_skills'];
@@ -20,7 +21,7 @@ class Applicant extends Model
         self::$image        = $request->file('app_image');
         self::$text         = self::$image->getClientOriginalExtension();
         self::$imageName    = uniqid().'_'.time().'.'.self::$text;
-        self::$directory    = storage_path('uploads/applicant_image/');
+        self::$directory    = storage_path('app/public/applicant_image/');
         self::$image->move(self::$directory, self::$imageName);
         return self::$imageName;
 

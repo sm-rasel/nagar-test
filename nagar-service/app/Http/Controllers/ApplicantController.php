@@ -11,7 +11,7 @@ class ApplicantController extends Controller
     public function applicantIndex()
     {
         $app_datas = Applicant::all();
-        return view('app_index', [
+        return view('main.app_index', [
             'app_datas' => $app_datas
         ]);
 
@@ -40,18 +40,15 @@ class ApplicantController extends Controller
             'message'       => 'Form Submit Successfully!',
             'alert-type'    => 'success'
         );
-        $app_datas = Applicant::all();
-        return view('app_index', [
-            'app_datas' => $app_datas
-        ]);
-//        return redirect('/');
+        return redirect('/')->with($notification);
     }
 
     public function applicantEdit($id)
     {
         $e_data = Applicant::findOrFail($id);
-        return view('app_edit', [
-            'e_data' => $e_data
+        return view('main.app_edit', [
+            'e_data' => $e_data,
+            'app_skills' => explode(',', $e_data->app_skills)
         ]);
     }
     public function applicantUpdate(Request $request, $id)
@@ -59,7 +56,7 @@ class ApplicantController extends Controller
         $request->validate(
             [
                 'app_name'  => 'required',
-                'app_email' => 'required|email|max:255|unique:user',
+                'app_email' => 'required|email|max:255|unique:applicants',
                 'app_image' => 'mimes:jpg,png|max:2048'
             ],
             [
@@ -68,16 +65,16 @@ class ApplicantController extends Controller
                 'app_email.email'       => 'Email Must be type of Email.',
                 'app_email.max'         => 'Email length must be in 255 Letter.',
                 'app_email.unique'      => 'This email is Already Exists',
-                'app_image.required'    => 'Image is required.',
                 'app_image.mimes'       => 'Only Jpg and Png can be uploaded',
                 'app_image.max'         => 'Maximum File Upload Size is 2MB'
             ]
         );
         Applicant::updateApplicant($request, $id);
         $notification = array(
-            'message'       => 'Form Submit Successfully!',
+            'message'       => 'Form Updated Successfully!',
             'alert-type'    => 'success'
         );
+        return redirect('/')->with($notification);
 
     }
     public function applicantDelete($id)
@@ -85,13 +82,13 @@ class ApplicantController extends Controller
         if (Applicant::applicantsDelete($id))
         {
             $data['success'] = true;
-            $data['message'] = 'Section Deleted Successfully !';
+            $data['message'] = 'Deleted Successfully !';
             return response()->json($data, 200);
         }
         else
         {
             $data['success'] = false;
-            $data['message'] = 'Success Can not be Deleted !';
+            $data['message'] = 'Can not be Deleted !';
             return response()->json($data, 200);
         }
     }
