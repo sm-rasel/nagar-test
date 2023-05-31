@@ -9,9 +9,9 @@
         <slot name="headerAction" />
       </div>
     </div>
-    <b-card-body :body-class="'iq-card-body ' + bodyClass" v-if="hasBodySlot">
+    <card-body :body-class="'iq-card-body ' + bodyClass" v-if="hasBodySlot">
       <slot name="body"/>
-    </b-card-body>
+    </card-body>
     <slot />
     <div v-if="hasFooterSlot" :class="'card-footer' + footerClass">
       <slot name="footer"/>

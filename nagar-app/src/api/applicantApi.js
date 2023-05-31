@@ -1,21 +1,9 @@
-/**
- * Mocking client-server processing
- */
-const _applicants = [
-    { 'id': 1, 'title': 'iPad 4 Mini', 'price': 500.01, 'inventory': 2 },
-    { 'id': 2, 'title': 'H&M T-Shirt White', 'price': 10.99, 'inventory': 10 },
-    { 'id': 3, 'title': 'Charli XCX - Sucker CD', 'price': 19.99, 'inventory': 5 }
-  ]
+import ApiConfig from '../../config/api_config'
+const baseUrl = 'http://127.0.0.1:8000/'
   
   export default {
     async getApplicants () {
-      await wait(100)
-      return _applicants
+      const  applicants = await ApiConfig.getData(baseUrl, '/')
+      return applicants.data
     }
-  }
-  
-  function wait (ms) {
-    return new Promise(resolve => {
-      setTimeout(resolve, ms)
-    })
   }

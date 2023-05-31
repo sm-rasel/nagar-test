@@ -5,7 +5,6 @@
             <div class="card-body">
                 <h4 class="card-title mb-4">Applicant Form</h4>
                 <form action="{{ route('app_store') }}" method="POST" id="sliderForm" enctype="multipart/form-data">
-                    @csrf
                     <div class="row mb-4">
                         <label class="col-sm-3 col-form-label">
                             Name

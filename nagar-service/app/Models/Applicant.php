@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use test\Mockery\Stubs\Animal;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Redis;
 
 class Applicant extends Model
 {
@@ -68,4 +69,19 @@ class Applicant extends Model
             return false;
         }
     }
+//    public static function redisFindOrFail($id)
+//    {
+//        if ($data = Redis::get('post:', $id))
+//        {
+//            Redis::expire('post:'.$id, 60*60*2);
+//            $data = json_decode($data, true);
+//            return new Applicant($data);
+//        }
+//        else
+//        {
+//            $data = self::findOrFail($id);
+//            Redis::setex('post:'.$id, 60*60*2, json_encode($data));
+//            return $data;
+//        }
+//    }
 }

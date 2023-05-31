@@ -92,4 +92,13 @@ class ApplicantController extends Controller
             return response()->json($data, 200);
         }
     }
+
+//    public function displayData($id)
+//    {
+//        $e_data = Applicant::redisFindOrFail($id);
+//        return view('main.app_edit', [
+//            'e_data' => $e_data,
+//            'app_skills' => explode(',', $e_data->app_skills)
+//        ]);
+//    }
 }
