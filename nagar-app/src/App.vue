@@ -3,10 +3,7 @@ import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/applicant-form">Form</router-link>
-  </nav>
+
   <RouterView />
 </template>
 

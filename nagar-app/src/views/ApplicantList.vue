@@ -1,5 +1,11 @@
 <template>
   <div class="container text-center  mt-5 mb-5">
+    <router-link class="btn btn-sm btn-outline-success w-md float-end" :to="{ name: 'applicantForm' }">
+      <span>
+        <i class="fas fa-plus"></i>
+        Create new
+      </span>
+    </router-link>
     <h3 class="mt-5 fw-bolder text-success "> List of Data </h3>
     <div class="table-responsive my-5 table-bordered">
       <BtTable :data="applicants" :columns="columns" :actions="actions" />
