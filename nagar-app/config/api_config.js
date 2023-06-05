@@ -1,8 +1,7 @@
 import axios from 'axios'
-
+export const ServiceBaseUrl = 'http://127.0.0.1:8000/'
 // Handling server error
 const errorHandler = (error) => {
-  console.log(error)
   if (error.response.status === 401) {
     localStorage.removeItem('access_token')
   } else if (error.response.status === 500) {
@@ -15,10 +14,8 @@ const errorHandler = (error) => {
   }
   return error
 }
-
 export default {
   async execute (baseUrl, method, uri, data, params = {}) {
-    const accessToken = localStorage.getItem('access_token')
     const client = axios.create({
       baseURL: baseUrl,
       json: true
@@ -30,7 +27,7 @@ export default {
       data,
       params: params,
       headers: {
-        Authorization: accessToken ? `Bearer ${accessToken}` : ''
+        'X-Requested-With': 'XMLHttpRequest'
       }
     }).then(req => {
       return req.data

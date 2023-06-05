@@ -10,14 +10,17 @@ class ApplicantController extends Controller
 {
     public function applicantIndex()
     {
-        $app_datas = Applicant::all();
-        return view('main.app_index', [
-            'app_datas' => $app_datas
-        ]);
-
+        $data = Applicant::all();
+        return response(
+            [
+                'success'  => true,
+                'data' => $data
+            ]
+        );
     }
     public function applicantStore(Request $request)
     {
+
         $request->validate(
             [
                 'app_name'  => 'required',
@@ -35,29 +38,22 @@ class ApplicantController extends Controller
                 'app_image.max'         => 'Maximum File Upload Size is 2MB'
             ]
         );
-        Applicant::newApplicants($request);
-        $notification = array(
-            'message'       => 'Form Submit Successfully!',
-            'alert-type'    => 'success'
-        );
-        return redirect('/')->with($notification);
-    }
 
-    public function applicantEdit($id)
-    {
-        $e_data = Applicant::findOrFail($id);
-        return view('main.app_edit', [
-            'e_data' => $e_data,
-            'app_skills' => explode(',', $e_data->app_skills)
-        ]);
+        $data = Applicant::newApplicants($request);
+        return response(
+            [
+                'success'   => true,
+                'data'      => $data
+            ]
+        );
     }
-    public function applicantUpdate(Request $request, $id)
+    public function applicantEdit(Request $request, $id)
     {
         $request->validate(
             [
                 'app_name'  => 'required',
-                'app_email' => 'required|email|max:255|unique:applicants',
-                'app_image' => 'mimes:jpg,png|max:2048'
+                'app_email' => 'required|email|max:255',
+                'app_image' => 'nullable|mimes:jpg,png|max:2048'
             ],
             [
                 'app_name.required'     => 'Name is Required.',
@@ -65,40 +61,32 @@ class ApplicantController extends Controller
                 'app_email.email'       => 'Email Must be type of Email.',
                 'app_email.max'         => 'Email length must be in 255 Letter.',
                 'app_email.unique'      => 'This email is Already Exists',
+                'app_image.required'    => 'Image is required.',
                 'app_image.mimes'       => 'Only Jpg and Png can be uploaded',
                 'app_image.max'         => 'Maximum File Upload Size is 2MB'
             ]
         );
-        Applicant::updateApplicant($request, $id);
-        $notification = array(
-            'message'       => 'Form Updated Successfully!',
-            'alert-type'    => 'success'
+        $data = Applicant::updateApplicant($request, $id);
+        return response(
+            [
+                'success'  => true,
+                'data' => $data
+            ]
         );
-        return redirect('/')->with($notification);
-
     }
     public function applicantDelete($id)
     {
         if (Applicant::applicantsDelete($id))
         {
             $data['success'] = true;
-            $data['message'] = 'Deleted Successfully !';
+            $data['message'] = 'Section Deleted Successfully !';
             return response()->json($data, 200);
         }
         else
         {
             $data['success'] = false;
-            $data['message'] = 'Can not be Deleted !';
+            $data['message'] = 'Success Can not be Deleted !';
             return response()->json($data, 200);
         }
     }
-
-//    public function displayData($id)
-//    {
-//        $e_data = Applicant::redisFindOrFail($id);
-//        return view('main.app_edit', [
-//            'e_data' => $e_data,
-//            'app_skills' => explode(',', $e_data->app_skills)
-//        ]);
-//    }
 }

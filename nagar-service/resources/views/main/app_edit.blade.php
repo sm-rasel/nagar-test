@@ -12,7 +12,7 @@
                             <span class="text-danger me-1">*</span>
                         </label>
                         <div class="col-sm-9">
-                            <input class="form-control" name="app_name" value="{{ $e_data->app_name }}" id="sliderDescription" placeholder="Enter Your Name"/>
+                            <input class="form-control summernote" name="app_name" value="{{ $e_data->app_name }}" id="sliderDescription" placeholder="Enter Your Name"/>
                             @if($errors->has('app_name'))
                                 <span class="error">{{ $errors->first('app_name') }}</span>
                             @endif

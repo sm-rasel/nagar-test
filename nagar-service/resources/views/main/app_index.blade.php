@@ -88,15 +88,15 @@
                     <div class="card-body">
                         <table class="table table-bordered dt-responsive nowrap w-100">
                             <thead>
-                            <tr>
-                                <th class="text-center">Sl</th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Email</th>
-                                <th class="text-center">Image</th>
-                                <th class="text-center">Gender</th>
-                                <th class="text-center">Skills</th>
-                                <th class="text-center">Action</th>
-                            </tr>
+                                <tr>
+                                    <th class="text-center">Sl</th>
+                                    <th class="text-center">Name</th>
+                                    <th class="text-center">Email</th>
+                                    <th class="text-center">Image</th>
+                                    <th class="text-center">Gender</th>
+                                    <th class="text-center">Skills</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
                             </thead>
 
                             <tbody>

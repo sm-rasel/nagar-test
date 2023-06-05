@@ -13,7 +13,7 @@ class Applicant extends Model
     use HasFactory, SoftDeletes;
     protected $table = 'applicants';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['app_name', 'app_email', 'app_image', 'app_gender', 'app_skills'];
+    protected $fillable = ['app_name', 'app_email', 'app_image', 'app_gender'];
 
     public static $applicant, $image, $text, $imageName, $imageUrl, $directory;
 
@@ -34,8 +34,9 @@ class Applicant extends Model
         self::$applicant->app_email     = $request->app_email;
         self::$applicant->app_image     = self::getImageUrl($request);
         self::$applicant->app_gender    = $request->app_gender;
-        self::$applicant->app_skills    = json_encode($request->app_skills);
+        self::$applicant->app_skills    = $request->app_skills;
         self::$applicant->save();
+        return self::$applicant;
     }
 
     public static function updateApplicant($request, $id)
@@ -49,12 +50,17 @@ class Applicant extends Model
             }
             self::$imageUrl = self::getImageUrl($request);
         }
+        else
+        {
+            self::$imageUrl = self::$applicant->app_image;
+        }
         self::$applicant->app_name      = $request->app_name;
         self::$applicant->app_email     = $request->app_email;
         self::$applicant->app_image     = self::$imageUrl;
         self::$applicant->app_gender    = $request->app_gender;
         self::$applicant->app_skills    = $request->app_skills;
         self::$applicant->update();
+        return self::$applicant;
     }
     public static function applicantsDelete($id)
     {
@@ -84,4 +90,5 @@ class Applicant extends Model
 //            return $data;
 //        }
 //    }
+
 }
