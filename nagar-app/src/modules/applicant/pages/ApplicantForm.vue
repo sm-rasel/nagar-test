@@ -63,28 +63,28 @@
                     <div class="col-sm-9 row col-form-label">
                       <div class="col-sm-3">
                         <label for="laravel" class="me-3">Laravel</label>
-                        <input type="checkbox" id="laravel" value="laravel" name="laravel" v-model="applicantData.app_skills"/>
+                        <input type="checkbox" id="laravel" value="laravel" v-model="applicantData.app_skills"/>
                       </div>
                       <div class="col-sm-3">
                         <label for="codeigniter" class="me-3">Codeigniter</label>
-                        <input type="checkbox" id="codeigniter" value="codeigniter" name="codeigniter" v-model="applicantData.app_skills"/>
+                        <input type="checkbox" id="codeigniter" value="codeigniter" v-model="applicantData.app_skills"/>
                       </div>
                       <div class="col-sm-3">
                         <label for="ajax" class="me-3">Ajax</label>
-                        <input type="checkbox" id="ajax" value="ajax" name="ajax" v-model="applicantData.app_skills"/>
+                        <input type="checkbox" id="ajax" value="ajax" v-model="applicantData.app_skills"/>
                       </div>
                       <div class="row mt-3">
                         <div class="col-sm-3">
                           <label for="vue" class="me-3">Vue Js</label>
-                          <input type="checkbox" id="ajax" value="vue" name="vue" v-model="applicantData.app_skills"/>
+                          <input type="checkbox" id="ajax" value="vue" v-model="applicantData.app_skills"/>
                         </div>
                         <div class="col-sm-3 ms-2">
                           <label for="mysql" class="me-3">My SQL</label>
-                          <input type="checkbox" id="mysql" value="mysql" name="mysql" v-model="applicantData.app_skills"/>
+                          <input type="checkbox" id="mysql" value="mysql" v-model="applicantData.app_skills"/>
                         </div>
                         <div class="col-sm-3 ms-2">
                           <label for="api" class="me-3">API</label>
-                          <input type="checkbox" id="api" value="api" name="api" v-model="applicantData.app_skills"/>
+                          <input type="checkbox" id="api" value="api" v-model="applicantData.app_skills"/>
                         </div>
                       </div>
                     </div>
